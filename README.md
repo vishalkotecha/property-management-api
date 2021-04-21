@@ -15,8 +15,11 @@ To compile and install these dependencies, type `mvn clean package` in your term
 
 > For the sake of simplicity, we have created some users with their keys so that the APIs would be accessible only with the keys. 
 
+
 for user `admin`, the key is `tpetjfj27p`
+
 for user `innkeeper`, the key is `pg94l805y4`
+
 for the user `purchaser`, the key is `l8527a5tim`
 
 
