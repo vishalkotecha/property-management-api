@@ -13,8 +13,10 @@ import com.example.propertymanager.entity.Property;
 import com.example.propertymanager.model.AddUpdatePropertyRequest;
 import com.example.propertymanager.model.PropertyApproveResponse;
 import com.example.propertymanager.model.SearchPropertyRequest;
-import com.example.propertymanager.service.PropertySearchResponse;
+import com.example.propertymanager.model.PropertySearchResponse;
 import com.example.propertymanager.service.PropertyService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/properties")
@@ -36,8 +38,8 @@ public class PropertyController {
     }
 
     @PostMapping("/_list")
-    public ResponseEntity<PropertySearchResponse> search(@RequestBody SearchPropertyRequest request) {
-        PropertySearchResponse response = propertyService.search(request);
+    public ResponseEntity<List<PropertySearchResponse>> search(@RequestBody SearchPropertyRequest request) {
+        List<PropertySearchResponse> response = propertyService.search(request);
         return ResponseEntity.ok(response);
     }
     

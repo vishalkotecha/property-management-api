@@ -1,18 +1,14 @@
 package com.example.propertymanager.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-import org.hibernate.annotations.GeneratorType;
+import lombok.*;
 
-import lombok.Builder;
-import lombok.Data;
-
-@Data
 @Entity
-@Builder
+@Builder(toBuilder = true)
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Property {
 
     @Id
@@ -23,5 +19,7 @@ public class Property {
     private int bedrooms;
     private boolean isApproved;
     private double rent;
-    private int type; // flat, independent house, villa
+    private int type; // flat, bungalow, villa
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 }
