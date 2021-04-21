@@ -1,5 +1,22 @@
 package com.example.propertymanager;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
+
 import com.example.propertymanager.dao.PropertyDao;
 import com.example.propertymanager.entity.Property;
 import com.example.propertymanager.model.AddUpdatePropertyRequest;
@@ -7,31 +24,17 @@ import com.example.propertymanager.model.PropertyApproveResponse;
 import com.example.propertymanager.model.PropertySearchResponse;
 import com.example.propertymanager.model.SearchPropertyRequest;
 import com.example.propertymanager.service.PropertyServiceImpl;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.when;
-
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class PropertyServiceImplTest {
 
     @InjectMocks
     private PropertyServiceImpl propertyService;
 
     @Mock
-    private PropertyDao propertyDao;
+    private PropertyDao         propertyDao;
 
-    @Test(expected = Exception.class)
+    @Test
     public void create_invalid_request_test() {
 
         Property propertyRequest = new Property();
@@ -43,11 +46,12 @@ public class PropertyServiceImplTest {
 
         Property propertyResponse = new Property();
         propertyResponse.setId(1L);
-
-        propertyService.create(null);
+        assertThrows(ResponseStatusException.class, () -> {
+            propertyService.create(null);
+        });
     }
 
-    @Test(expected = Exception.class)
+    @Test
     public void create_invalid_address_test() {
 
         AddUpdatePropertyRequest addUpdatePropertyRequest = new AddUpdatePropertyRequest();
@@ -65,11 +69,12 @@ public class PropertyServiceImplTest {
 
         Property propertyResponse = new Property();
         propertyResponse.setId(1L);
-
-        propertyService.create(addUpdatePropertyRequest);
+        assertThrows(ResponseStatusException.class, () -> {
+            propertyService.create(addUpdatePropertyRequest);
+        });
     }
 
-    @Test(expected = Exception.class)
+    @Test
     public void create_invalid_type_test() {
 
         AddUpdatePropertyRequest addUpdatePropertyRequest = new AddUpdatePropertyRequest();
@@ -87,8 +92,9 @@ public class PropertyServiceImplTest {
 
         Property propertyResponse = new Property();
         propertyResponse.setId(1L);
-
-        propertyService.create(addUpdatePropertyRequest);
+        assertThrows(ResponseStatusException.class, () -> {
+            propertyService.create(addUpdatePropertyRequest);
+        });
     }
 
     @Test
@@ -187,9 +193,11 @@ public class PropertyServiceImplTest {
         assertEquals(actualResponse.size(), expectedResponse.size());
     }
 
-    @Test(expected = Exception.class)
+    @Test
     public void approve_property_id_not_found_test() {
-        propertyService.approve(1L);
+        assertThrows(ResponseStatusException.class, () -> {
+            propertyService.approve(1L);
+        });
     }
 
     @Transactional
