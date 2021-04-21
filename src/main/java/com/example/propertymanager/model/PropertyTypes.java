@@ -2,7 +2,7 @@ package com.example.propertymanager.model;
 
 public enum PropertyTypes {
 
-    FLAT(1), BUNGLOW(2), VILLA(3);
+    FLAT(1), BUNGALOW(2), VILLA(3);
     
     Integer id;
     PropertyTypes(int id){
