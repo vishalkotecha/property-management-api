@@ -1,15 +1,13 @@
-package com.narola.propertymanager.entity;
+package com.example.propertymanager.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
-import lombok.Data;
-
-@Data
-@Entity
-public class Property {
-
-    @Id
+@Builder
+@Getter @Setter
+public class AddUpdatePropertyRequest {
+    
     private Long id;
     private String number;
     private String address;
@@ -17,4 +15,5 @@ public class Property {
     private boolean isApproved;
     private double rent;
     private int type; // flat, independent house, villa
+
 }

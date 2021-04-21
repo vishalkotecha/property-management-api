@@ -1,4 +1,4 @@
-package com.narola.propertymanager;
+package com.example.propertymanager.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.narola.propertymanager.model.CreatePropertyRequest;
-import com.narola.propertymanager.model.PropertyApproveResponse;
-import com.narola.propertymanager.model.PropertyResponse;
-import com.narola.propertymanager.model.SearchPropertyRequest;
-import com.narola.propertymanager.service.PropertySearchResponse;
-import com.narola.propertymanager.service.PropertyService;
+import com.example.propertymanager.entity.Property;
+import com.example.propertymanager.model.AddUpdatePropertyRequest;
+import com.example.propertymanager.model.PropertyApproveResponse;
+import com.example.propertymanager.model.SearchPropertyRequest;
+import com.example.propertymanager.service.PropertySearchResponse;
+import com.example.propertymanager.service.PropertyService;
 
 @RestController
 @RequestMapping("/api/v1/properties")
@@ -24,14 +24,14 @@ public class PropertyController {
     private PropertyService propertyService;
 
     @PostMapping
-    public ResponseEntity<PropertyResponse> create(@RequestBody CreatePropertyRequest request) {
-        PropertyResponse response = propertyService.create(request);
+    public ResponseEntity<Property> create(@RequestBody AddUpdatePropertyRequest request) {
+        Property response = propertyService.create(request);
         return ResponseEntity.ok(response);
     }
 
     @PutMapping
-    public ResponseEntity<PropertyResponse> update(@RequestBody CreatePropertyRequest request) {
-        PropertyResponse response = propertyService.create(request);
+    public ResponseEntity<Property> update(@RequestBody AddUpdatePropertyRequest request) {
+        Property response = propertyService.update(request);
         return ResponseEntity.ok(response);
     }
 

@@ -1,4 +1,4 @@
-package com.narola.propertymanager.model;
+package com.example.propertymanager.model;
 
 import lombok.Getter;
 import lombok.Setter;

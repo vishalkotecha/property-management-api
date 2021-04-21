@@ -1,4 +1,4 @@
-package com.narola.propertymanager;
+package com.example.propertymanager;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
