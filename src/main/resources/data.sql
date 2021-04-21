@@ -5,13 +5,13 @@ INSERT INTO role(id, name)VALUES(3, 'purchaser');
 
 /*insert default users*/
 INSERT INTO user(id, api_key, first_name, last_name)
-VALUES (1, 'jijne82njddj29nd9nsn', 'Administrator', 'Administrator');
+VALUES (1, 'tpetjfj27p', 'Administrator', 'Administrator');
 
 INSERT INTO user(id, api_key, first_name, last_name)
-VALUES (2, 'hdgjshbe123456nnddnd', 'John', 'Doe');
+VALUES (2, 'pg94l805y4', 'John', 'Doe');
 
 INSERT INTO user(id, api_key, first_name, last_name)
-VALUES (3, 'kjkxskxje44j3djnadke', 'Land Lord', 'Land Lord');
+VALUES (3, 'l8527a5tim', 'Land Lord', 'Land Lord');
 
 /*insert default user roles*/
 INSERT INTO user_role(user_id, role_id)VALUES(1,1);
