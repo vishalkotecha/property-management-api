@@ -55,11 +55,11 @@ public class PropertyServiceImpl implements PropertyService {
         }
 
         if (request.getAddress().length() < 10 || request.getAddress().length() > 255) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, PROPERTY_TYPE_NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ADDRESS_LENGTH_NOT_ENOUGH);
         }
 
         if(!PropertyTypes.exists(request.getType())) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ADDRESS_LENGTH_NOT_ENOUGH);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, PROPERTY_TYPE_NOT_FOUND);
         }
     }
 
@@ -72,6 +72,7 @@ public class PropertyServiceImpl implements PropertyService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     @Override
     public PropertyApproveResponse approve(Long propertyId) {
         Property property = propertyDao.findById(propertyId)
